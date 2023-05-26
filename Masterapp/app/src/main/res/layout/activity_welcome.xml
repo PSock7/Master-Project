@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/welcome"
+        android:src="@drawable/welcomepage"
         android:foreground="@drawable/foreground_design"/>
         />
 
@@ -36,12 +36,28 @@
         android:background="@drawable/btn_bg_design"
         android:fontFamily="@font/aclonica"
         android:padding="14dp"
-        android:text="Get Started"
+        android:text="Register"
+        android:textSize="23sp"
+        android:onClick="register"
         android:textAllCaps="false"
         app:layout_constraintWidth_percent=".6"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="635dp" />
+        tools:layout_editor_absoluteY="578dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="@string/sign_in"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

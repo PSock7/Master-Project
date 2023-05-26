@@ -8,4 +8,7 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
     }
+    public void register(View view){
+        startActivity(new Intent(WelcomeActivity.this,RegistrationActivity.class))
+    }
 }
