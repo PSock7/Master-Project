@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Masterapp" parent="android:Theme.Material.Light.NoActionBar" >
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="Theme.Masterapp" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name='DefaultTextStyle'>
+        <item name="android:textColor">@color/lightGray</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/lobster</item>
     </style>
+
+    <style name='SubtitleTextStyle' parent="DefaultTextStyle">
+        <item name="android:textColor">@color/darkGray</item>
+    </style>
+
+    <style name='TitleTextStyle' parent="SubtitleTextStyle">
+        <item name="android:textSize">24sp</item>
+    </style>
+
 </resources>
