@@ -13,4 +13,10 @@ class LoginActivity : AppCompatActivity() {
     fun Registerdirection(view: View) {
         startActivity(Intent(this, RegistrationActivity::class.java))
     }
+
+    fun HomeRedirection(view: View) {
+        startActivity(Intent(this, HomeActivity::class.java))
+    }
+
+
 }
