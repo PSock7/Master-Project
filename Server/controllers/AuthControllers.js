@@ -1,70 +1,55 @@
-const express = require("express");
-const bcrypt = require("bcrypt");
-const router = express.Router();
-const dbConn = require("../config/dbConn");
+const { StatusCodes } = require("http-status-codes");
+const User = require("../models/User");
 
-// Route de création de compte
-router.post("/signup", async (req, res) => {
+const register = async (req, res, next) => {
   try {
-    const { email, password, name, confirmPassword } = req.body;
+    const { email, name, password } = req.body;
 
-    // Vérification du mot de passe confirmé
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: "Passwords do not match" });
+    const emailAlreadyExists = await User.findOne({ email });
+    if (emailAlreadyExists) {
+      return res
+        .status(StatusCodes.CONFLICT)
+        .json({ error: "email already exist" });
     }
 
-    // Hash du mot de passe
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Insertion des données dans la base de données
-    const conn = await dbConn.getConnection();
-    const result = await conn.execute(
-      `INSERT INTO users (email, password, name) VALUES (:email, :password, :name)`,
-      [email, hashedPassword, name]
-    );
-
-    // Fermeture de la connexion
-    await conn.close();
-
-    res.status(200).json({ message: "Account created successfully" });
+    const user = new User({ name, email, password });
+    const savedUser = await user.save();
+    // TODO return token
+    return res.status(StatusCodes.CREATED).json({ user: savedUser });
   } catch (error) {
-    console.error("Error creating account:", error);
-    res.status(500).json({ message: "Internal Server Error" });
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
   }
-});
+};
 
-// Route de connexion
-router.post("/login", async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // Récupération de l'utilisateur depuis la base de données
-    const conn = await dbConn.getConnection();
-    const result = await conn.execute(
-      `SELECT * FROM users WHERE email = :email`,
-      [email]
-    );
+    const user = await User.findOne({ email });
 
-    // Vérification de l'utilisateur
-    if (result.rows.length === 0) {
-      return res.status(400).json({ message: "Invalid credentials" });
+    if (!user) {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ error: "Invalid Credentials" });
     }
-
-    const user = result.rows[0];
-
-    // Vérification du mot de passe
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+    const isPasswordCorrect = await user.comparePassword(password);
+    if (!isPasswordCorrect) {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ error: "Invalid Credentials" });
     }
-
-    // TODO: Générer un jeton d'authentification (par exemple, JWT)
-
-    res.status(200).json({ message: "Login successful" });
+    // TODO return token
+    return res.status(StatusCodes.OK).json({ user: user });
   } catch (error) {
-    console.error("Error logging in:", error);
-    res.status(500).json({ message: "Internal Server Error" });
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  register,
+  login,
+};

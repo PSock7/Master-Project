@@ -4,3 +4,17 @@
 20230603	15:04:23	663e4c97-840d-4915-b0c6-09dee89b66ac	POST	/signup	undefined
 20230603	15:05:27	5a5e54de-63da-4a26-97fc-7104e51551b9	POST	/signup	undefined
 20230603	15:34:57	00be6ba7-4d85-4f2e-9dd6-07804b2d2141	POST	/signup	undefined
+20230604	00:12:51	cc19e929-b818-4d81-bad2-4bc23032054e	POST	/register	undefined
+20230604	00:13:22	e516e052-24f1-4a52-bc3b-4bf8ce0d87ce	POST	/register	undefined
+20230604	00:13:42	6bf2480e-4669-45b8-8bb3-7b73d155528f	GET	/	undefined
+20230604	00:13:43	782b064a-f181-4a19-bea8-879d25cecf12	GET	/css/style.css	undefined
+20230604	00:13:43	ab5deabe-b946-4595-ba17-d7c2c1c9f395	GET	/favicon.ico	undefined
+20230604	00:13:57	87b0bd0c-3ccf-4e89-900c-5fe46ae1e226	POST	/register	undefined
+20230604	00:14:16	8cefdf36-128e-41f0-bd9f-0bde338d679c	POST	/register	undefined
+20230604	00:14:39	a63b9351-a1bb-45a1-8260-a9752acfd19d	POST	//api/v1/auth/register	undefined
+20230604	00:14:44	a6990842-fe7b-44f0-a3f0-201a6c479f1f	POST	/api/v1/auth/register	undefined
+20230604	00:14:50	e131b3d6-4b46-424e-b262-7e022359b724	POST	/api/v1/auth/register	undefined
+20230604	00:15:34	e63064a9-9f54-4d7c-be92-9ccf760a9ed2	POST	/api/v1/auth/register	undefined
+20230604	00:16:04	b3452578-63f8-4556-8536-18ef33f45e77	POST	/api/v1/auth/register	undefined
+20230604	00:16:37	4441c9f5-6fa0-4004-b3fd-4ad19b44d61c	POST	/api/v1/auth/register	undefined
+20230604	00:17:17	60bf3cd4-ccaf-43f9-a6eb-aec50f475c4e	POST	/api/v1/auth/register	undefined
