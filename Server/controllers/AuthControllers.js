@@ -1,4 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
+const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
 const register = async (req, res, next) => {
@@ -12,9 +13,11 @@ const register = async (req, res, next) => {
         .json({ error: "Email already exists" });
     }
 
-    const user = new User({ name, email, password });
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({ name, email, password: hashedPassword });
     const savedUser = await user.save();
-    // TODO return token
+
     return res.status(StatusCodes.CREATED).json({ user: savedUser });
   } catch (error) {
     return res
@@ -35,13 +38,13 @@ const login = async (req, res, next) => {
         .json({ error: "Invalid credentials" });
     }
 
-    const isPasswordCorrect = await user.comparePassword(password);
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       return res
         .status(StatusCodes.UNAUTHORIZED)
         .json({ error: "Invalid credentials" });
     }
-    // TODO return token
+
     return res.status(StatusCodes.OK).json({ user });
   } catch (error) {
     return res
