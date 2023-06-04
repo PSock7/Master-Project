@@ -1,32 +1,75 @@
-const asyncHandler = require('express-async-handler');
 const Plant = require('../models/Plant');
+const User = require('../models/User');
+const asyncHandler = require('express-async-handler');
 
-// @desc Ajouter une plante
-// @route POST /plants
+// @desc Get all plants
+// @route GET /plants
 // @access Private
-const addPlant = asyncHandler(async (req, res) => {
-  const { name, description, seuil, image } = req.body;
-  const userId = req.user._id; // ID de l'utilisateur connecté
+const getAllPlants = asyncHandler(async (req, res) => {
+  const plants = await Plant.find().lean();
 
-  const plant = await Plant.create({ user: userId, name, description, seuil, image });
-
-  res.status(201).json(plant);
-});
-
-// @desc Modifier une plante
-// @route PUT /plants/:id
-// @access Private
-const updatePlant = asyncHandler(async (req, res) => {
-  const { name, description, seuil, image } = req.body;
-  const plantId = req.params.id;
-  const userId = req.user._id; // ID de l'utilisateur connecté
-
-  const plant = await Plant.findOne({ _id: plantId, user: userId });
-
-  if (!plant) {
-    return res.status(404).json({ message: 'Plante non trouvée' });
+  if (!plants?.length) {
+    return res.status(400).json({ message: 'No plants found' });
   }
 
+  const plantsWithUser = await Promise.all(
+    plants.map(async (plant) => {
+      const user = await User.findById(plant.user).lean().exec();
+      return { ...plant, username: user.username };
+    })
+  );
+
+  res.json(plantsWithUser);
+});
+
+// @desc Create a new plant
+// @route POST /plants
+// @access Private
+const createNewPlant = asyncHandler(async (req, res) => {
+  const { user, name, description, seuil, image } = req.body;
+
+  if (!user || !name || !description || !seuil || !image) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  const duplicate = await Plant.findOne({ name }).lean().exec();
+
+  if (duplicate) {
+    return res.status(409).json({ message: 'Duplicate plant name' });
+  }
+
+  const plant = await Plant.create({ user, name, description, seuil, image });
+
+  if (plant) {
+    return res.status(201).json({ message: 'New plant created' });
+  } else {
+    return res.status(400).json({ message: 'Invalid plant data received' });
+  }
+});
+
+// @desc Update a plant
+// @route PATCH /plants/:id
+// @access Private
+const updatePlant = asyncHandler(async (req, res) => {
+  const { id, user, name, description, seuil, image } = req.body;
+
+  if (!id || !user || !name || !description || !seuil || !image) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  const plant = await Plant.findById(id).exec();
+
+  if (!plant) {
+    return res.status(400).json({ message: 'Plant not found' });
+  }
+
+  const duplicate = await Plant.findOne({ name }).lean().exec();
+
+  if (duplicate && duplicate._id.toString() !== id) {
+    return res.status(409).json({ message: 'Duplicate plant name' });
+  }
+
+  plant.user = user;
   plant.name = name;
   plant.description = description;
   plant.seuil = seuil;
@@ -34,29 +77,35 @@ const updatePlant = asyncHandler(async (req, res) => {
 
   const updatedPlant = await plant.save();
 
-  res.json(updatedPlant);
+  res.json(`'${updatedPlant.name}' updated`);
 });
 
-// @desc Supprimer une plante
+// @desc Delete a plant
 // @route DELETE /plants/:id
 // @access Private
 const deletePlant = asyncHandler(async (req, res) => {
-  const plantId = req.params.id;
-  const userId = req.user._id; // ID de l'utilisateur connecté
+  const { id } = req.body;
 
-  const plant = await Plant.findOne({ _id: plantId, user: userId });
-
-  if (!plant) {
-    return res.status(404).json({ message: 'Plante non trouvée' });
+  if (!id) {
+    return res.status(400).json({ message: 'Plant ID required' });
   }
 
-  await plant.remove();
+  const plant = await Plant.findById(id).exec();
 
-  res.json({ message: 'Plante supprimée' });
+  if (!plant) {
+    return res.status(400).json({ message: 'Plant not found' });
+  }
+
+  const result = await plant.deleteOne();
+
+  const reply = `Plant '${result.name}' with ID ${result._id} deleted`;
+
+  res.json(reply);
 });
 
 module.exports = {
-  addPlant,
+  getAllPlants,
+  createNewPlant,
   updatePlant,
   deletePlant,
 };

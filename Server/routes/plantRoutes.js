@@ -1,34 +1,14 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Joi = require("joi");
-const validateRequest = require("../middleware/validation");
-const {
-  addPlant,
-  updatePlant,
-  deletePlant,
-} = require("../controllers/PlantControllers");
+const plantController = require('../controllers/PlantControllers');
+const verifyJWT = require('../middleware/verifyJWT');
 
-// Schéma de validation pour l'ajout d'une plante
-const addPlantSchema = Joi.object({
-  name: Joi.string().required(),
-  description: Joi.string().required(),
-  seuil: Joi.number().required(),
-});
+router.use(verifyJWT);
 
-// Schéma de validation pour la modification d'une plante
-const updatePlantSchema = Joi.object({
-  name: Joi.string(),
-  description: Joi.string(),
-  seuil: Joi.number(),
-});
-
-// Route pour l'ajout d'une plante
-router.post("/plants", validateRequest(addPlantSchema), addPlant);
-
-// Route pour la modification d'une plante
-router.put("/plants/:id", validateRequest(updatePlantSchema), updatePlant);
-
-// Route pour la suppression d'une plante
-router.delete("/plants/:id", deletePlant);
+router.route('/')
+  .get(plantController.getAllPlants)
+  .post(plantController.createNewPlant)
+  .patch(plantController.updatePlant)
+  .delete(plantController.deletePlant);
 
 module.exports = router;
