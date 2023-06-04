@@ -9,7 +9,7 @@ const register = async (req, res, next) => {
     if (emailAlreadyExists) {
       return res
         .status(StatusCodes.CONFLICT)
-        .json({ error: "email already exist" });
+        .json({ error: "Email already exists" });
     }
 
     const user = new User({ name, email, password });
@@ -32,16 +32,17 @@ const login = async (req, res, next) => {
     if (!user) {
       return res
         .status(StatusCodes.UNAUTHORIZED)
-        .json({ error: "Invalid Credentials" });
+        .json({ error: "Invalid credentials" });
     }
+
     const isPasswordCorrect = await user.comparePassword(password);
     if (!isPasswordCorrect) {
       return res
         .status(StatusCodes.UNAUTHORIZED)
-        .json({ error: "Invalid Credentials" });
+        .json({ error: "Invalid credentials" });
     }
     // TODO return token
-    return res.status(StatusCodes.OK).json({ user: user });
+    return res.status(StatusCodes.OK).json({ user });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
