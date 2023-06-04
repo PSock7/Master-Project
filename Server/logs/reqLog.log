@@ -18,3 +18,12 @@
 20230604	00:16:04	b3452578-63f8-4556-8536-18ef33f45e77	POST	/api/v1/auth/register	undefined
 20230604	00:16:37	4441c9f5-6fa0-4004-b3fd-4ad19b44d61c	POST	/api/v1/auth/register	undefined
 20230604	00:17:17	60bf3cd4-ccaf-43f9-a6eb-aec50f475c4e	POST	/api/v1/auth/register	undefined
+20230604	11:18:09	7c3ec1bf-d82e-4e8e-9e45-ded20de27398	GET	/api/v1/auth/login	undefined
+20230604	11:18:09	f78f6833-d866-459b-ac19-9032ceb67760	GET	/api/v1/auth/css/style.css	undefined
+20230604	11:27:03	eb565350-978f-4e7d-8ee0-0af262083852	POST	/api/v1/auth/register	undefined
+20230604	11:57:53	6216893a-d0c3-45ab-8b1e-0f1ad08c3654	POST	/api/v1/plants/	undefined
+20230604	11:58:10	41a8d3c7-1a17-4e8f-9caa-f921059f37cf	POST	/api/v1/plants/	undefined
+20230604	12:34:13	28ea7be3-b115-443f-abe9-6bf3431adc0e	POST	/api/v1/users/	undefined
+20230604	12:57:06	fd43129e-e1f1-4fde-b93e-a657c0e472af	POST	/api/v1/ruser	undefined
+20230604	12:57:23	01472e6a-321c-4f7f-a705-34f345468063	POST	/api/v1/users	undefined
+20230604	12:58:09	6ed38b64-0c27-4cac-90e5-f43264886b06	POST	/api/v1/auth	undefined
