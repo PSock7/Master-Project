@@ -1,23 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const Joi = require("joi");
-const validateRequest = require("../middleware/validation");
-const { register, login } = require("../controllers/AuthControllers");
+const express = require('express')
+const router = express.Router()
+const authController = require('../controllers/AuthControllers')
+const loginLimiter = require('../middleware/loginLimiter')
 
-const registerSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  password: Joi.string().min(3).required(),
-});
+router.route('/')
+    .post(loginLimiter, authController.login)
 
-const loginSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(3).required(),
-});
+router.route('/refresh')
+    .get(authController.refresh)
 
-router.route("/register").post(validateRequest(registerSchema), register);
+router.route('/logout')
+    .post(authController.logout)
 
-router.route("/login").post(validateRequest(loginSchema), login);
-
-
-module.exports = router;
+module.exports = router
