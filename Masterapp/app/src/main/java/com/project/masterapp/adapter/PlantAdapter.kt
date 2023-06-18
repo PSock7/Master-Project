@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.project.masterapp.HomeActivity
 import com.project.masterapp.PlantModel
+import com.project.masterapp.PlantPopup
 import com.project.masterapp.R
-import org.w3c.dom.Text
 
-class PlantAdapter(private val context:HomeActivity, private val planList: List<PlantModel>, private val layoutId : Int) : RecyclerView.Adapter<PlantAdapter.ViewHolder>() {
+class PlantAdapter(val context: HomeActivity, private val planList: List<PlantModel>, private val layoutId: Int) : RecyclerView.Adapter<PlantAdapter.ViewHolder>() {
 
     // boite pour ranger tout les composants à contrôler
 
@@ -44,5 +44,13 @@ class PlantAdapter(private val context:HomeActivity, private val planList: List<
 
         //mettre à jour la description de la plante
         holder.plantDescription?.text = currentPlant.description
+
+        // interaction lors du clic sur une plante
+        holder.itemView.setOnClickListener {
+            //afficher la popup
+            PlantPopup(this, currentPlant).show()
+        }
     }
+
+
 }
