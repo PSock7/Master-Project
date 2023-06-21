@@ -2,6 +2,10 @@
     <!-- Page d'accueil -->
     <string name="app_name">Eplant</string>
 
+    <string name="bottom_home_item">Accueil</string>
+    <string name="bottom_plante_item">Mes plantes</string>
+    <string name="bottom_add_plant_item">Photo</string>
+
     <!-- Page de connexion -->
     <string name="sign_in">Sign In</string>
 
@@ -13,8 +17,8 @@
     <string name="home_page_notifications">Mes notifications</string>
 
     <!-- Page registration des plantes -->
-    <string name="add_plant_page_title">Ajout d\'une plante</string>
-    <string name="add_plant_page_upload_button">Identifier</string>
+    <string name="add_plant_page_title">Ajouter une plante</string>
+    <string name="add_plant_page_upload_button">image</string>
     <string name="add_plant_page_name_input">@string/item_plant_name</string>
     <string name="add_plant_page_description_input">@string/item_plant_description</string>
 
@@ -35,7 +39,8 @@
         <item> Consommation : Elevé </item>
     </string-array>
 
-    <string name="add_plant_page_confirm_button">description</string>
+    <string name="add_plant_page_confirm_button">Enregistrer</string>
+    <string name="add_plant_lens">Identifier avec LENS</string>
 
     <string name="popup_plant_name">Plant Name</string>
     <string name="popup_plant_description_title">Description</string>
