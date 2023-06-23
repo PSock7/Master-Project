@@ -21,6 +21,7 @@ class PlantAdapter(val context: HomeActivity, private val planList: List<PlantMo
         val plantImage = view.findViewById<ImageView>(R.id.image_item)
         val plantName:TextView? = view.findViewById<TextView>(R.id.name_item)
         val plantDescription:TextView? = view.findViewById<TextView>(R.id.description_item)
+        val buttonIcon = view.findViewById<ImageView>(R.id.button_icon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,6 +45,21 @@ class PlantAdapter(val context: HomeActivity, private val planList: List<PlantMo
 
         //mettre à jour la description de la plante
         holder.plantDescription?.text = currentPlant.description
+
+        if(currentPlant.watered)
+        {
+            if(currentPlant.watered)
+            {
+                holder.buttonIcon.setImageResource(R.drawable.ic_button)
+            }
+
+            else
+            {
+                holder.buttonIcon.setImageResource(R.drawable.ic_unbutton)
+
+            }
+
+        }
 
         // interaction lors du clic sur une plante
         holder.itemView.setOnClickListener {

@@ -48,13 +48,19 @@ class HomeActivity : AppCompatActivity() {
     }
 private fun loadFragment(fragment : Fragment, string : Int)
 {
-    // actualiser le titre de la page
-    findViewById<TextView>(R.id.page_title).text = resources.getString(string)
-    //
-    val transaction = supportFragmentManager.beginTransaction()
-    transaction.replace(R.id.fragment_container, fragment)
-    transaction.addToBackStack(null)
-    transaction.commit()
+    //charger notre plantRepository
+    val repo = PlantRepository()
+    repo.updateData {
+        // actualiser le titre de la page
+        findViewById<TextView>(R.id.page_title).text = resources.getString(string)
+        //
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+
+    }
+
 }
 
 }
