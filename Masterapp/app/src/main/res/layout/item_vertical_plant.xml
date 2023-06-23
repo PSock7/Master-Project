@@ -52,13 +52,15 @@
         app:layout_constraintStart_toStartOf="@+id/name_item"/>
 
     <ImageView
-        android:id="@+id/alarm_icon"
+        android:id="@+id/button_icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginRight="@dimen/default_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cardView"/>
+        app:layout_constraintTop_toTopOf="@id/cardView"
+        android:src="@drawable/ic_button"
+        app:tint="@color/blue"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

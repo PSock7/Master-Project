@@ -15,4 +15,6 @@
     <color name="background_color">#E5E5E5</color>
     <color name="darkGray">#202122</color>
     <color name="lightGray">#989CA0</color>
+    <color name="blue">#00B0FF</color>
+    <color name="red">#F50057</color>
 </resources>

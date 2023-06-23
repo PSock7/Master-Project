@@ -25,16 +25,16 @@ class HomeFragment( private val context: HomeActivity) : Fragment(
         val plantlist = arrayListOf<PlantModel>()
 
         //enregistrer dans notre liste pissenlit
-        plantlist.add(PlantModel("tulipe", "belle plante", "https://cdn.pixabay.com/photo/2018/04/29/18/24/tulip-3360748_1280.jpg", false))
+        plantlist.add(PlantModel("tulipe", "belle plante", "https://cdn.pixabay.com/photo/2018/04/29/18/24/tulip-3360748_1280.jpg", true))
         plantlist.add(PlantModel("rose", "valentin", "https://cdn.pixabay.com/photo/2013/07/21/13/00/rose-165819_1280.jpg", false))
-        plantlist.add(PlantModel("cactus", "ça pique", "https://cdn.pixabay.com/photo/2015/04/10/17/03/pots-716579_1280.jpg", false))
+        plantlist.add(PlantModel("cactus", "ça pique", "https://cdn.pixabay.com/photo/2015/04/10/17/03/pots-716579_1280.jpg", true))
         plantlist.add(PlantModel("tournesol", "soleil", "https://cdn.pixabay.com/photo/2016/07/23/00/12/sunflower-1536088_1280.jpg", false))
 
         val horizontalRecyclerView = view?.findViewById<RecyclerView>(R.id.horizontal_recycler_view)
         horizontalRecyclerView?.adapter = PlantAdapter(context, plantlist, R.layout.item_horizontal_plant)
 
         val verticalRecyclerView = view?.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView?.adapter = PlantAdapter(context, plantlist, R.layout.item_vertical_plant)
+        verticalRecyclerView?.adapter = PlantAdapter(context, plantlist.filter{ !it.watered }, R.layout.item_vertical_plant)
         verticalRecyclerView?.addItemDecoration(PlantItemDecoration())
 
         return view

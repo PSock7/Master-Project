@@ -1,5 +1,6 @@
 package com.project.masterapp.adapter
-
+import android.graphics.PorterDuff;
+import androidx.core.content.ContextCompat;
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class PlantAdapter(val context: HomeActivity, private val planList: List<PlantMo
         val plantImage = view.findViewById<ImageView>(R.id.image_item)
         val plantName:TextView? = view.findViewById<TextView>(R.id.name_item)
         val plantDescription:TextView? = view.findViewById<TextView>(R.id.description_item)
+        val buttonIcon = view.findViewById<ImageView>(R.id.button_icon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,6 +46,15 @@ class PlantAdapter(val context: HomeActivity, private val planList: List<PlantMo
 
         //mettre à jour la description de la plante
         holder.plantDescription?.text = currentPlant.description
+
+        if(currentPlant.watered) {
+            holder.buttonIcon?.setImageResource(R.drawable.ic_button)
+            holder.buttonIcon?.setColorFilter(ContextCompat.getColor(context, R.color.blue), PorterDuff.Mode.SRC_IN)
+        } else {
+            holder.buttonIcon?.setImageResource(R.drawable.ic_button)
+            holder.buttonIcon?.setColorFilter(ContextCompat.getColor(context, R.color.red), PorterDuff.Mode.SRC_IN)
+        }
+
 
         // interaction lors du clic sur une plante
         holder.itemView.setOnClickListener {
