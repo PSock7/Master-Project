@@ -47,7 +47,7 @@
     <string name="popup_plant_description_subtitle">Petite description</string>
     <string name="popup_plant_grow_title">Croissance</string>
     <string name="popup_plant_grow_subtitle">Lente</string>
-    <string name="popup_plant_water_title">Consommation Eau</string>
+    <string name="popup_plant_water_title">Niveau Humidité</string>
     <string name="popup_plant_water_subtitle">Faible</string>
 
 </resources>
