@@ -27,6 +27,7 @@
             android:letterSpacing="0.03"/>
 
         <EditText
+            android:id="@+id/editText_email_login"
             android:layout_width="350dp"
             android:layout_height="45dp"
             android:background="@drawable/forget"
@@ -39,6 +40,7 @@
             android:paddingLeft="20dp"/>
 
         <EditText
+            android:id="@+id/editText_password_login"
             android:layout_width="350dp"
             android:layout_height="45dp"
             android:background="@drawable/forget"
@@ -63,6 +65,7 @@
             android:layout_marginRight="35dp"/>
 
         <Button
+            android:id="@+id/button_login"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:background="@drawable/button"
@@ -71,14 +74,14 @@
             android:textStyle="bold"
             android:textColor="#FFF"
             android:layout_marginTop="20dp"
-            android:onClick="HomeRedirection"/>
+            />
 
         <TextView
+            android:id="@+id/textView_register_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account? Sign Up"
             android:textColor="#0d6e6a"
-            android:onClick="Registerdirection"
             android:textStyle="bold"
             android:textSize="18dp"
             android:layout_marginTop="15dp"/>
