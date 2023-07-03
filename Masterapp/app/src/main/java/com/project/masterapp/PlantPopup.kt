@@ -17,6 +17,7 @@ class PlantPopup(private val adapter : PlantAdapter, private val currentPlant : 
         setContentView(R.layout.popup_plants_details)
         setupComponent()
         setupCloseButton()
+        setupDeleteButton()
     }
 
     private fun setupCloseButton() {
@@ -37,5 +38,16 @@ class PlantPopup(private val adapter : PlantAdapter, private val currentPlant : 
         //actualiser la description de la plante
         findViewById<TextView>(R.id.popup_plant_description_subtitle).text = currentPlant.description
 
+        //actualiser le niveau d'humidité de la plate
+        findViewById<TextView>(R.id.popup_plant_water_subtitle).text = currentPlant.humidityLevel
+
+    }
+
+    private fun setupDeleteButton()
+    {
+        findViewById<ImageView>(R.id.delete_button).setOnClickListener{
+            val repo = PlantRepository()
+            repo.deletePlant(currentPlant)
+        }
     }
 }

@@ -48,10 +48,10 @@ class PlantAdapter(val context: HomeActivity, private val planList: List<PlantMo
         holder.plantDescription?.text = currentPlant.description
 
         if(currentPlant.watered) {
-            holder.buttonIcon?.setImageResource(R.drawable.ic_button)
+            holder.buttonIcon?.setImageResource(R.drawable.ic_water)
             holder.buttonIcon?.setColorFilter(ContextCompat.getColor(context, R.color.blue), PorterDuff.Mode.SRC_IN)
         } else {
-            holder.buttonIcon?.setImageResource(R.drawable.ic_button)
+            holder.buttonIcon?.setImageResource(R.drawable.ic_water)
             holder.buttonIcon?.setColorFilter(ContextCompat.getColor(context, R.color.red), PorterDuff.Mode.SRC_IN)
         }
 
@@ -62,6 +62,7 @@ class PlantAdapter(val context: HomeActivity, private val planList: List<PlantMo
             PlantPopup(this, currentPlant).show()
         }
     }
+
 
 
 }

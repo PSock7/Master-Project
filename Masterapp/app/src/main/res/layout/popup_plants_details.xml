@@ -2,7 +2,7 @@
  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
      xmlns:tools="http://schemas.android.com/tools"
      android:layout_width="360dp"
-    android:layout_height="380dp"
+    android:layout_height="360dp"
     android:padding="15dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -63,24 +63,6 @@
         app:layout_constraintStart_toStartOf="@+id/popup_plant_description_title"
         app:layout_constraintTop_toBottomOf="@+id/popup_plant_description_title" />
 
-    <TextView
-        android:id="@+id/popup_plant_grow_title"
-        style="@style/TitleTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/popup_plant_grow_title"
-        android:layout_marginTop="@dimen/default_margin"
-        app:layout_constraintStart_toStartOf="@+id/popup_plant_description_subtitle"
-        app:layout_constraintTop_toBottomOf="@+id/popup_plant_description_subtitle" />
-
-    <TextView
-        android:id="@+id/popup_plant_grow_subtitle"
-        style="@style/DefaultTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/popup_plant_grow_subtitle"
-        app:layout_constraintStart_toStartOf="@+id/popup_plant_grow_title"
-        app:layout_constraintTop_toBottomOf="@+id/popup_plant_grow_title" />
 
     <TextView
         android:id="@+id/popup_plant_water_title"
@@ -89,8 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/popup_plant_water_title"
-        app:layout_constraintStart_toStartOf="@+id/popup_plant_grow_subtitle"
-        app:layout_constraintTop_toBottomOf="@+id/popup_plant_grow_subtitle" />
+        app:layout_constraintStart_toStartOf="@+id/popup_plant_description_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/popup_plant_description_subtitle" />
 
     <TextView
         android:id="@+id/popup_plant_water_subtitle"
@@ -100,5 +82,13 @@
         android:text="@string/popup_plant_water_subtitle"
         app:layout_constraintStart_toStartOf="@+id/popup_plant_water_title"
         app:layout_constraintTop_toBottomOf="@+id/popup_plant_water_title" />
+
+   <ImageView
+       android:id="@+id/delete_button"
+       android:layout_width="40dp"
+       android:layout_height="40dp"
+       android:src="@drawable/ic_trash"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/popup_plant_water_subtitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

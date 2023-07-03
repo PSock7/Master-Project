@@ -37,6 +37,7 @@
         android:textColor="@color/white"/>
 
     <EditText
+        android:id="@+id/name_input"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:hint="@string/add_plant_page_name_input"
@@ -45,6 +46,7 @@
         android:paddingLeft="@dimen/default_margin"/>
 
     <EditText
+        android:id="@+id/description_input"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:hint="@string/add_plant_page_description_input"
@@ -53,6 +55,7 @@
         android:paddingLeft="@dimen/default_margin"/>
 
     <Button
+        android:id="@+id/confirm_button"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/darkGray"
