@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     Toast.makeText(
                         baseContext,
-                        "Account created successfully.",
+                        "Login successfully.",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
