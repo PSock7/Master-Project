@@ -62,7 +62,7 @@ class PlantRepository {
             val uploadTask = ref.putFile(file)
             uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>>
             { task ->
-                if(task.isSuccessful)
+                if(!task.isSuccessful)
                 {
                     task.exception?.let { throw it }
                 }

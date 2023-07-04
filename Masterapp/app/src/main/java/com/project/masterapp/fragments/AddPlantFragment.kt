@@ -34,11 +34,11 @@ class AddPlantFragment(
         val pickupImageButton = view?.findViewById<Button>(R.id.upload_image)
         pickupImageButton?.setOnClickListener{pickupImage()}
         val confirmButton = view?.findViewById<Button>(R.id.confirm_button)
-        confirmButton?.setOnClickListener { sendForm() }
+        confirmButton?.setOnClickListener { sendForm(view) }
         return view
     }
 
-    private fun sendForm() {
+    private fun sendForm(view: View) {
         val repo = PlantRepository()
         repo.uploadImage(file!!)
         {
@@ -70,7 +70,7 @@ class AddPlantFragment(
         if(requestCode==47 && resultCode== Activity.RESULT_OK)
         {
             if(data == null || data.data==null) return
-            val selectedImage = data.data
+            val file = data.data
             uploadedImage?.setImageURI(file)
 
 
